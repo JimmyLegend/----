@@ -27,10 +27,13 @@ ToolUtil t=new ToolUtil();
 		String date=df.format(new Date());
 		paper.setDate(date);
 		//paper.setDate(date);
-		String sql = "insert into papers (testId, courseId,time,score,wrongQueId,wrongAns,studentId,createDate) values(?,?,?,?,?,?,?,?)";
+		String sql = "insert into papers (testId, courseId,time,score,panduanscore,tiankongscore,wendascore,totalscore,wrongQueId,wrongAns,"
+				+ "wrongpanduanqueid,wrongpanduanans,wrongtiankongqueid,wrongtiankongans,wendaans,studentId,createDate) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
-			db.execute(sql, new Object[] { paper.getTestId(), paper.getCourseId(), paper.getTime(), paper.getScore(),
-					paper.getWrongQueId(), paper.getWrongAns(), paper.getStudentId(),paper.getDate()});
+			db.execute(sql, new Object[] { paper.getTestId(), paper.getCourseId(), paper.getTime(), paper.getScore(),paper.getPanDuanScore(),
+					paper.getTianKongScore(),paper.getWenDaScore(),paper.getTotalScore(),paper.getWrongQueId(), paper.getWrongAns(),
+					paper.getPanDuanWrongQueId(),paper.getPanDuanWrongAns(),paper.getTianKongWrongQueId(),paper.getTianKongWrongAns(),paper.getWenDaAns(),
+					paper.getStudentId(),paper.getDate()});
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

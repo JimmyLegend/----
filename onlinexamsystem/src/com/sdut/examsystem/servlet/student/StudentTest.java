@@ -36,6 +36,10 @@ public class StudentTest extends HttpServlet {
 		List<Map<String, Object>> qWenDaList=qs.findQuestionByIds(4,testMap.get("questionswenda").toString());
 		
 		req.setAttribute("scoreperques", 1.0*Integer.parseInt((String) (testMap.get("scores")))/qList.size());
+		req.setAttribute("panduanscores", 1.0*Integer.parseInt((String) (testMap.get("panduanscores")))/qPanDuanList.size());
+		req.setAttribute("tiankongscores", 1.0*Integer.parseInt((String) (testMap.get("tiankongscores")))/qTianKongList.size());
+		req.setAttribute("wendascores", 1.0*Integer.parseInt((String) (testMap.get("wendascores")))/qWenDaList.size());
+		
 		req.getSession().setAttribute("test", testMap);
 		req.getSession().setAttribute("quesList", qList);
 		req.getSession().setAttribute("qPanDuanList", qPanDuanList);
@@ -49,11 +53,18 @@ public class StudentTest extends HttpServlet {
 		// TODO Auto-generated method stub
 		//super.doPost(req, resp);
 		String time = req.getParameter("hidden1");
-		//从session中获取试题信息
-		List quesList = (List) req.getSession().getAttribute("quesList");
 		//从session中获取试卷信息
 		Map testMap = (Map) req.getSession().getAttribute("test");
-		//System.out.println(testMap);
+		
+		//选择题
+		//从session中获取试题信息
+		List quesList = (List) req.getSession().getAttribute("quesList");
+		//判断
+		List qPanDuanList = (List) req.getSession().getAttribute("qPanDuanList");
+		//填空
+		List qTianKongList = (List) req.getSession().getAttribute("qTianKongList");
+		//问答
+		List qWenDaList = (List) req.getSession().getAttribute("qWenDaList");
 		
 		/**
 		 * 从session中能够获取试题集合
@@ -71,8 +82,13 @@ public class StudentTest extends HttpServlet {
 		 * 分值的计算方式为：试卷总分/试题数量*正确的题目数量
 		 * 把以上信息封装成paper对象，持久化到数据库
 		 */
+		//选择
 		if (null == quesList || quesList.size()<1)
 			return ;
+		
+		
+		
+		//选择
 		StringBuffer wrongQueId = new StringBuffer();
 		StringBuffer wrongAns = new StringBuffer();
 		//目的是遍历试卷中的试题的集合
@@ -90,6 +106,53 @@ public class StudentTest extends HttpServlet {
 				wrongQueNum++;
 			}
 		}
+		
+		
+		
+		//判断
+		StringBuffer wrongPanDuanQueId = new StringBuffer();
+		StringBuffer wrongPanDuanAns = new StringBuffer();
+		//目的是遍历试卷中的试题的集合
+		int wrongPanDuanQueNum = 0;
+		for (int i = 0 ; i < qPanDuanList.size();i++){
+			Map<String, Object> q = (Map<String, Object>)qPanDuanList.get(i);
+//			System.out.println(q.get("ans"));
+			//页面接收的答案
+			String ans = req.getParameter("ques_"+q.get("id").toString()).toUpperCase();
+//			System.out.println(ans);
+//			//如果和标准答案不匹配，则记录错误的题号和错误答案
+			if (!q.get("ans").toString().toUpperCase().equals(ans)){
+				wrongPanDuanQueId.append(q.get("id").toString()).append(",");
+				wrongPanDuanAns.append(ans).append(",");
+				wrongPanDuanQueNum++;
+			}
+		}
+		
+		
+		//填空
+		StringBuffer wrongTianKongQueId = new StringBuffer();
+		StringBuffer wrongTianKongAns = new StringBuffer();
+		//目的是遍历试卷中的试题的集合
+		int wrongTianKongQueNum = 0;
+		for (int i = 0 ; i < qTianKongList.size();i++){
+			Map<String, Object> q = (Map<String, Object>)qTianKongList.get(i);
+//			System.out.println(q.get("ans"));
+			//页面接收的答案
+			String ans = req.getParameter("tiankongans");
+//			System.out.println(ans);
+//			//如果和标准答案不匹配，则记录错误的题号和错误答案
+			if (!q.get("ans").toString().equals(ans)){
+				wrongTianKongQueId.append(q.get("id").toString()).append(",");
+				wrongTianKongAns.append(ans).append(",");
+				wrongTianKongQueNum++;
+			}
+		}
+		
+		//问答
+		String wendaans=req.getParameter("paperTitle");
+		System.out.println(wendaans);
+		
+		
 //		System.out.println(wrongQueId.toString());
 //		System.out.println(wrongAns.toString());
 		
@@ -98,6 +161,10 @@ public class StudentTest extends HttpServlet {
 		p.setCourseId((int) testMap.get("courseId"));
 		p.setTime(time);
 		//获得试题的总分和错误试题的数量
+		
+		
+		
+		//选择
 		if (quesList.size()>wrongQueNum)
 			p.setScore(1.0*Integer.parseInt((String) (testMap.get("scores")))/quesList.size()*(quesList.size()-wrongQueNum));
 		else
@@ -112,8 +179,54 @@ public class StudentTest extends HttpServlet {
 			wrongQueIdString = wrongQueIdString.substring(0, wrongQueIdString.length()-1);
 			wrongAnsString = wrongAnsString.substring(0, wrongAnsString.length()-1);
 		}
+		
 		p.setWrongQueId(wrongQueIdString);
 		p.setWrongAns(wrongAnsString);
+		
+		
+		
+		//判断
+		if (qPanDuanList.size()>wrongPanDuanQueNum)
+			p.setPanDuanScore(1.0*Integer.parseInt((String) (testMap.get("panduanscores")))/qPanDuanList.size()*(qPanDuanList.size()-wrongPanDuanQueNum));
+		else
+			p.setPanDuanScore(0);
+		/**
+		 * 如果做的全对，那么wrongQueId和wrongAns，都是空
+		 * 如果有错题，那么多带了一个逗号
+		 */
+		String wrongPanDuanQueIdString = wrongPanDuanQueId.toString();
+		String wrongPanDuanAnsString = wrongPanDuanAns.toString();
+		if (wrongPanDuanQueIdString.endsWith(",")){
+			wrongPanDuanQueIdString = wrongPanDuanQueIdString.substring(0, wrongPanDuanQueIdString.length()-1);
+			wrongPanDuanAnsString = wrongPanDuanAnsString.substring(0, wrongPanDuanAnsString.length()-1);
+		}
+		
+		p.setPanDuanWrongQueId(wrongPanDuanQueIdString);
+		p.setPanDuanWrongAns(wrongPanDuanAnsString);
+		
+		
+		//填空
+		if (qTianKongList.size()>wrongTianKongQueNum)
+			p.setTianKongScore(1.0*Integer.parseInt((String) (testMap.get("tiankongscores")))/qTianKongList.size()*(qTianKongList.size()-wrongTianKongQueNum));
+		else
+			p.setTianKongScore(0);
+		/**
+		 * 如果做的全对，那么wrongQueId和wrongAns，都是空
+		 * 如果有错题，那么多带了一个逗号
+		 */
+		String wrongTianKongQueIdString = wrongTianKongQueId.toString();
+		String wrongTianKongAnsString = wrongTianKongAns.toString();
+		if (wrongTianKongQueIdString.endsWith(",")){
+			wrongTianKongQueIdString = wrongTianKongQueIdString.substring(0, wrongTianKongQueIdString.length()-1);
+			wrongTianKongAnsString = wrongTianKongAnsString.substring(0, wrongTianKongAnsString.length()-1);
+		}
+		
+		p.setTianKongWrongQueId(wrongTianKongQueIdString);
+		p.setTianKongWrongAns(wrongTianKongAnsString);
+		
+		//问答
+		p.setWenDaAns(wendaans);
+		
 		Student s = (Student) req.getSession().getAttribute("user");
 		p.setStudentId(s.getId());
 		ps.save(p);

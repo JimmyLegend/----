@@ -8,8 +8,17 @@ public class Paper {
 	int courseId;	
 	String time;
 	double score;
+	double panduanscore;
+	double tiankongscore;
+	double wendascore;
+	double totalscore;
 	String wrongQueId;
 	String wrongAns;
+	String wrongpanduanqueid;
+	String wrongpanduanans;
+	String wrongtiankongqueid;
+	String wrongtiankongans;
+	String wendaans;
 	int studentId;
 	String  date;
 	public String getDate() {
@@ -66,5 +75,58 @@ public class Paper {
 	public void setStudentId(int studentId) {
 		this.studentId = studentId;
 	}
-
+	public double getPanDuanScore() {
+		return panduanscore;
+	}
+	public void setPanDuanScore(double panduanscore) {
+		this.panduanscore = panduanscore;
+	}
+	public double getTianKongScore() {
+		return tiankongscore;
+	}
+	public void setTianKongScore(double tiankongscore) {
+		this.tiankongscore = tiankongscore;
+	}
+	public double getWenDaScore() {
+		return wendascore;
+	}
+	public void setWenDaScore(double wendascore) {
+		this.wendascore = wendascore;
+	}
+	public double getTotalScore() {
+		return totalscore;
+	}
+	public void setTotalScore(double totalscore) {
+		this.totalscore = totalscore;
+	}
+	public String getPanDuanWrongQueId() {
+		return wrongpanduanqueid;
+	}
+	public void setPanDuanWrongQueId(String wrongpanduanqueid) {
+		this.wrongpanduanqueid = wrongpanduanqueid;
+	}
+	public String getPanDuanWrongAns() {
+		return wrongpanduanans;
+	}
+	public void setPanDuanWrongAns(String wrongpanduanans) {
+		this.wrongpanduanans = wrongpanduanans;
+	}
+	public String getTianKongWrongQueId() {
+		return wrongtiankongqueid;
+	}
+	public void setTianKongWrongQueId(String wrongtiankongqueid) {
+		this.wrongtiankongqueid = wrongtiankongqueid;
+	}
+	public String getTianKongWrongAns() {
+		return wrongtiankongans;
+	}
+	public void setTianKongWrongAns(String wrongtiankongans) {
+		this.wrongtiankongans = wrongtiankongans;
+	}
+	public String getWenDaAns() {
+		return wendaans;
+	}
+	public void setWenDaAns(String wendaans) {
+		this.wendaans = wendaans;
+	}
 }

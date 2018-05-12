@@ -15,9 +15,9 @@ public class TestDao implements ITestDao {
 	@Override
 	public void createTest(Test t) {
 		// TODO Auto-generated method stub
-		String sql="insert into test(name,courseId,endDate,testTime,questions,questionspanduan,questionstiankong,questionswenda,teacherId,classIds,scores) values(?,?,?,?,?,?,?,?,?,?,?)";
+		String sql="insert into test(name,courseId,endDate,testTime,questions,questionspanduan,questionstiankong,questionswenda,teacherId,classIds,scores,panduanscores,tiankongscores,wendascores) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
-			db.execute(sql, new Object[]{t.getName(),t.getCourseId(),t.getEndDate(),t.getTestTime(),t.getQuetions(),t.getPanDuanQuetions(),t.getTianKongQuetions(),t.getWenDaQuetions(),t.getTeacherId(),t.getClassIds(),t.getScores()});
+			db.execute(sql, new Object[]{t.getName(),t.getCourseId(),t.getEndDate(),t.getTestTime(),t.getQuetions(),t.getPanDuanQuetions(),t.getTianKongQuetions(),t.getWenDaQuetions(),t.getTeacherId(),t.getClassIds(),t.getScores(),t.getPanDuanScores(),t.getTianKongScores(),t.getWenDaScores()});
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,7 +56,7 @@ public class TestDao implements ITestDao {
 	@Override
 	public Map<String, Object> findStudentTestsById(int studentid, int testid) {
 		// TODO Auto-generated method stub
-		String sql = "SELECT t.id,t.name as testName, c.name as courseName,c.id as courseId ,t.endDate,t.questions,t.questionspanduan,t.questionstiankong,t.questionswenda,t.testTime,t.scores, sc.name as className from test t,student s , course c, stuclass as sc where t.id = ? and FIND_IN_SET(s.classId,t.classIds) and s.id=? and t.courseId = c.id and s.classId = sc.id";
+		String sql = "SELECT t.id,t.name as testName, c.name as courseName,c.id as courseId ,t.endDate,t.questions,t.questionspanduan,t.questionstiankong,t.questionswenda,t.testTime,t.scores,t.panduanscores,t.tiankongscores,t.wendascores, sc.name as className from test t,student s , course c, stuclass as sc where t.id = ? and FIND_IN_SET(s.classId,t.classIds) and s.id=? and t.courseId = c.id and s.classId = sc.id";
 		Map<String, Object> map = null;
 //		System.out.println(studentid);
 //		System.out.println(testid);

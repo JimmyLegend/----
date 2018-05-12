@@ -205,7 +205,7 @@ p {
 				<p>&nbsp;</p>
 				<!-- 判断 -->
 				<p>
-					<b>二、判断题（${test.scores}分）（每小题${scoreperques}分，错选、未选均不得分。）
+					<b>二、判断题（${test.panduanscores}分）（每小题${panduanscores}分。）
 					</b>
 				</p>
 				<c:forEach var="que" items="${qPanDuanList}" varStatus="status">
@@ -219,8 +219,8 @@ p {
 					<p>D.${que.choiceD }</p>
 					-->
 					<p>
-					是.<input type="radio" name = "ques_${que.id}" value = "A"/>
-					否.<input type="radio" name = "ques_${que.id}" value = "B"/>
+					是.<input type="radio" name = "ques_${que.id}" value = "Yes"/>
+					否.<input type="radio" name = "ques_${que.id}" value = "No"/>
 					<!-- C.<input type="radio" name = "ques_${que.id}" value = "C"/>
 					D.<input type="radio" name = "ques_${que.id}" value = "D"/>
 					-->
@@ -230,7 +230,7 @@ p {
 				<p>&nbsp;</p>
 				<!-- 填空 -->
 				<p>
-					<b>三、填空题（${test.scores}分）（每小题${scoreperques}分，错选、未选均不得分。）
+					<b>三、填空题（${test.tiankongscores}分）（每小题${tiankongscores}分。）
 					</b>
 				</p>
 				<c:forEach var="que" items="${qTianKongList}" varStatus="status">
@@ -251,7 +251,7 @@ p {
 				<p>&nbsp;</p>
 				<!-- 问答 -->
 				<p>
-					<b>三、问答题（${test.scores}分）（每小题${scoreperques}分，错选、未选均不得分。）
+					<b>四、问答题（${test.wendascores}分）（每小题${wendascores}分。）
 					</b>
 				</p>
 				<c:forEach var="que" items="${qWenDaList}" varStatus="status">
