@@ -50,7 +50,7 @@ ToolUtil t=new ToolUtil();
 	@Override
 	public List getPaperByStudentId(int studentId) {
 		// TODO Auto-generated method stub
-		String sql="SELECT distinct p.id,c.name as courseName ,t.name as testName,p.time,p.createDate,p.score from papers p,test t,student s , course c WHERE t.id=p.testId and c.id=p.courseId and p.studentId = ? ORDER BY p.createDate";
+		String sql="SELECT distinct p.id,c.name as courseName ,t.name as testName,p.time,p.createDate,p.totalscore from papers p,test t,student s , course c WHERE t.id=p.testId and c.id=p.courseId and p.studentId = ? ORDER BY p.createDate";
 		List<Map<String, Object>> list=null;
 		try {
 			list=db.getQueryList(sql,new Object[]{studentId});

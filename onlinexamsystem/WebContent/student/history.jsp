@@ -40,7 +40,7 @@
 				<td>${paper.testName}</td>
 				<td>${paper.time}</td>
 				<td>${paper.createDate}</td>
-				<td>${paper.score}</td>
+				<td>${paper.totalscore}</td>
 			</tr>
 		</c:forEach>
 	</table>

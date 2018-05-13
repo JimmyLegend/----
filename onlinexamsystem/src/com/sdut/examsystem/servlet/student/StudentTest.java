@@ -165,8 +165,12 @@ public class StudentTest extends HttpServlet {
 		
 		
 		//选择
+		double xuanzescore = 0;
 		if (quesList.size()>wrongQueNum)
+			{
 			p.setScore(1.0*Integer.parseInt((String) (testMap.get("scores")))/quesList.size()*(quesList.size()-wrongQueNum));
+			xuanzescore=p.getScore();
+			}
 		else
 			p.setScore(0);
 		/**
@@ -186,8 +190,12 @@ public class StudentTest extends HttpServlet {
 		
 		
 		//判断
+		double panduanscore=0;
 		if (qPanDuanList.size()>wrongPanDuanQueNum)
+			{
 			p.setPanDuanScore(1.0*Integer.parseInt((String) (testMap.get("panduanscores")))/qPanDuanList.size()*(qPanDuanList.size()-wrongPanDuanQueNum));
+			panduanscore=p.getPanDuanScore();
+			}
 		else
 			p.setPanDuanScore(0);
 		/**
@@ -206,8 +214,12 @@ public class StudentTest extends HttpServlet {
 		
 		
 		//填空
+		double tiankongscore=0;
 		if (qTianKongList.size()>wrongTianKongQueNum)
+			{
 			p.setTianKongScore(1.0*Integer.parseInt((String) (testMap.get("tiankongscores")))/qTianKongList.size()*(qTianKongList.size()-wrongTianKongQueNum));
+			tiankongscore=p.getTianKongScore();
+			}
 		else
 			p.setTianKongScore(0);
 		/**
@@ -223,7 +235,8 @@ public class StudentTest extends HttpServlet {
 		
 		p.setTianKongWrongQueId(wrongTianKongQueIdString);
 		p.setTianKongWrongAns(wrongTianKongAnsString);
-		
+		double totalscore=xuanzescore+tiankongscore+panduanscore;
+		p.setTotalScore(totalscore);
 		//问答
 		p.setWenDaAns(wendaans);
 		
