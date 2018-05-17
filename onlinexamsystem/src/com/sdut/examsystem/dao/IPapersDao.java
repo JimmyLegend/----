@@ -15,6 +15,11 @@ public interface IPapersDao {
 	
 	public List getPaperByStudentId(int studentId);
 	
+	public List<Map<String, Object>> findPapersByTeaId(int teaId,int testId) ;
+	
+	public Map<String, Object> findPaperByPaperId(int paperId) ;
 	//所有的班级成绩。
 	public List getPaperCompare(int teaId);
+	
+	public void updatePaperByPaperId(int paperId,int wendascore,int totalscore);
 }

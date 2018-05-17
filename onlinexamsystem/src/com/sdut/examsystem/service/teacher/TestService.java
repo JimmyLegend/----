@@ -39,4 +39,10 @@ public class TestService implements ITestService {
 		return td.getTestByStudent(id, currData);
 	}
 
+	@Override
+	public Map<String, Object> findTestByTestId(int testId) {
+		// TODO Auto-generated method stub
+		return td.findTestByTestId(testId);
+	}
+
 }

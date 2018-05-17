@@ -1,6 +1,7 @@
 package com.sdut.examsystem.service.teacher;
 
 import java.util.List;
+import java.util.Map;
 
 import com.sdut.examsystem.dao.teacher.PapersDao;
 import com.sdut.examsystem.po.Paper;
@@ -30,6 +31,24 @@ PapersDao pd=new PapersDao();
 	public List getPaperCompare(int teaId) {
 		// TODO Auto-generated method stub
 		return pd.getPaperCompare(teaId);
+	}
+
+	@Override
+	public List<Map<String, Object>> findPapersByTeaId(int teaId,int testId) {
+		// TODO Auto-generated method stub
+		return pd.findPapersByTeaId(teaId,testId);
+	}
+
+	@Override
+	public Map<String, Object> findPaperByPaperId(int paperId) {
+		// TODO Auto-generated method stub
+		return pd.findPaperByPaperId(paperId);
+	}
+
+	@Override
+	public void updatePaperByPaperId(int paperId,int wendascore,int totalscore) {
+		// TODO Auto-generated method stub
+		pd.updatePaperByPaperId(paperId, wendascore, totalscore);
 	}
 
 }

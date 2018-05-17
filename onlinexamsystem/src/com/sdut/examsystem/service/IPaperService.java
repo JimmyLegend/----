@@ -1,8 +1,10 @@
 package com.sdut.examsystem.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.sdut.examsystem.po.Paper;
+import com.sdut.examsystem.po.StuClass;
 
 public interface IPaperService { 
 	
@@ -19,5 +21,11 @@ public interface IPaperService {
 	 */
 	public List getPaperByStudentId(int studentId);
 	
+	public List<Map<String, Object>> findPapersByTeaId(int teaId,int testId) ;
+	
+	public Map<String, Object> findPaperByPaperId(int paperId) ;
+	
 	public List getPaperCompare(int teaId);
+	
+	public void updatePaperByPaperId(int paperId,int wendascore,int totalscore);
 }

@@ -219,8 +219,8 @@ p {
 					<p>D.${que.choiceD }</p>
 					-->
 					<p>
-					是.<input type="radio" name = "ques_${que.id}" value = "Yes"/>
-					否.<input type="radio" name = "ques_${que.id}" value = "No"/>
+					是.<input type="radio" name = "ques_${que.id}" value = "YES"/>
+					否.<input type="radio" name = "ques_${que.id}" value = "NO"/>
 					<!-- C.<input type="radio" name = "ques_${que.id}" value = "C"/>
 					D.<input type="radio" name = "ques_${que.id}" value = "D"/>
 					-->
@@ -244,7 +244,7 @@ p {
 					<p>D.${que.choiceD }</p>
 					-->
 					<p>
-					<input type="text" name="tiankongans" id="tiankongans" />
+					<input type="text" name="tiankongans${que.id}" id="tiankongans" />
 					</p>
 				</c:forEach>
 

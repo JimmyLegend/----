@@ -22,7 +22,10 @@ public class LoginDao implements ILoginDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return (Teacher) list.get(0);
+		if(list.size()!=0)
+		    return (Teacher) list.get(0);
+		else
+			return null;
 	}
 
 	@Override
@@ -36,7 +39,11 @@ public class LoginDao implements ILoginDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return (Student) list.get(0);
+		if(list.size()!=0)
+		    return (Student) list.get(0);
+		else
+			return null;
+			
 	}
 
 }

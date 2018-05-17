@@ -28,11 +28,18 @@ public class QuestionAddPanDunServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String queTitle=request.getParameter("paperTitle");
+		String courseId=request.getParameter("courseId");
+		String queType=request.getParameter("queType");
+		String queTitle=request.getParameter("queTitle");
+		String ans=request.getParameter("ans");
 		Question quest=new Question();
 		quest.setQueTitle(queTitle);
-		System.out.println(quest.getQueTitle());
-		//qs.addQuestion(quest);
+		quest.setCourseId(Integer.parseInt(courseId));
+		quest.setQueType(Integer.parseInt(queType));
+		quest.setQueTitle(queTitle);
+		quest.setAns(ans);
+		//System.out.println(quest.getQueTitle());
+		qs.addQuestion(quest);
 		response.sendRedirect(request.getContextPath()+"/QuestionPanDuanQueryServlet");
 	}
 

@@ -82,9 +82,9 @@
 					<td width="40">${que.queTitle}</td>
 					<td width="30" align="center">${que.ans}</td>
 					<td width="30"><a
-						href='<%=path%>/questionModifyServlet?id=${que.id}'>修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+						href='<%=path%>/QuestionTianKongModifyServlet?id=${que.id}'>修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
 						<a
-						href='<%=path%>/questionDeleteServlet?id=${que.id}'
+						href='<%=path%>/QuestionTianKongDeleteServlet?id=${que.id}'
 						onclick="javascript: return confirm('确认删除试题吗？');">删除</a></td>
 				</tr>
 			</c:forEach>

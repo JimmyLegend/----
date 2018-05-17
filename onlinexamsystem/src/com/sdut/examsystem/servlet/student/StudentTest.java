@@ -138,7 +138,7 @@ public class StudentTest extends HttpServlet {
 			Map<String, Object> q = (Map<String, Object>)qTianKongList.get(i);
 //			System.out.println(q.get("ans"));
 			//页面接收的答案
-			String ans = req.getParameter("tiankongans");
+			String ans = req.getParameter("tiankongans"+q.get("id"));
 //			System.out.println(ans);
 //			//如果和标准答案不匹配，则记录错误的题号和错误答案
 			if (!q.get("ans").toString().equals(ans)){

@@ -46,7 +46,7 @@
 				<td>${test.endDate }</td>
 				<td>${test.testTime }</td>
 				<td>${test.classNames }</td>
-				<td>${test.scores }</td>
+				<td>${test.totalscores }</td>
 				<td width="81">正在考试</td>
 			</tr>
 		</c:forEach>

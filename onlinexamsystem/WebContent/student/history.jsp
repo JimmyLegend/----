@@ -37,7 +37,7 @@
 		<c:forEach var="paper" items="${paperList}">
 			<tr align="center">
 				<td>${paper.courseName}</td>
-				<td>${paper.testName}</td>
+				<td><a href = '<%=path%>/StudPaperDetailInfoServlet?paperId=${paper.id}&testId=${paper.testId}'>${paper.testName}</a></td>
 				<td>${paper.time}</td>
 				<td>${paper.createDate}</td>
 				<td>${paper.totalscore}</td>

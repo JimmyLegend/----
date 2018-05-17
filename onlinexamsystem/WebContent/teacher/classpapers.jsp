@@ -33,7 +33,7 @@
 			<tr align="center">
 				<td>${paper.className }</td>
 				<td>${paper.courseName }</td>
-				<td>${paper.testName }</td>
+				<td><a href = '<%=path%>/PaperQueryServlet?id=${paper.testId}'>${paper.testName }</a></td>
 				<td>${paper.endDate }</td>
 				<td>${paper.deptName }</td>
 				<td>${paper.avgScore }</td>

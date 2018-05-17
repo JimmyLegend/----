@@ -87,7 +87,9 @@ public class TestAddServlet extends HttpServlet {
 		t.setTianKongScores(tiankongscores);
 		//问答分数
 		t.setWenDaScores(wendascores);
-		
+		//总分
+		Integer totalScores=Integer.parseInt(sinscores)+Integer.parseInt(panduanscores)+Integer.parseInt(tiankongscores)+Integer.parseInt(wendascores);
+		t.setTotalScores(totalScores.toString());
 		t.setTeacherId(loginTeacher.getId());
 		t.setTestTime(Integer.parseInt(testtime));
 		t.setClassIds(ToolUtil.arraytoString(classCheck));

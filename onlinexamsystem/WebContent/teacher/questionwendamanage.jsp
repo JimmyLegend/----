@@ -50,10 +50,14 @@
 			&nbsp;&nbsp;
 			<a href="<%=path%>/QuestionPanDuanQueryServlet" target="mainFrame">判断题</a>
 			&nbsp;&nbsp;
+			<a href="<%=path%>/QuestionTianKongQueryServlet" target="mainFrame">填空题</a>
+			&nbsp;&nbsp;
 			<a href="<%=path%>/QuestionWenDaQueryServlet" target="mainFrame">问答题</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;<a href='<%=path%>/questionAddServlet'>增加选择题</a>
 			&nbsp;&nbsp;
 			<a href='<%=path%>/QuestionAddPanDunServlet'>增加判断题</a>
+			&nbsp;&nbsp;
+			<a href='<%=path%>/QuestionAddTianKongServlet'>增加填空题</a>
 			&nbsp;&nbsp;
 			<a href='<%=path%>/QuestionAddWenDaServlet'>增加问答题</a>
 		</h3>
@@ -62,13 +66,13 @@
 
 		<table width="90%" border="0" align="center" cellpadding="0"
 			cellspacing="0" class="table3">
-			<tr align="center">
-				<td><b>题号</b></td>
-				<td><b>考试科目</b></td>
-				<td><b>题型</b></td>
+			<tr align="left">
+				<td width="30"><b>题号</b></td>
+				<td width="100"><b>考试科目</b></td>
+				<td width="50"><b>题型</b></td>
 				<td><b>题干</b></td>
 				<td><b>答案</b></td>
-				<td><b>操作</b></td>
+				<td width="100"><b>操作</b></td>
 			</tr>
 			<c:forEach var="que" items="${queList}">
 				<tr align="left">
@@ -78,9 +82,9 @@
 					<td width="40">${que.queTitle}</td>
 					<td width="30" align="center">${que.ans}</td>
 					<td width="30"><a
-						href='<%=path%>/questionModifyServlet?id=${que.id}'>修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+						href='<%=path%>/QuestionWenDaModifyServlet?id=${que.id}'>修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
 						<a
-						href='<%=path%>/questionDeleteServlet?id=${que.id}'
+						href='<%=path%>/QuestionWenDaDeleteServlet?id=${que.id}'
 						onclick="javascript: return confirm('确认删除试题吗？');">删除</a></td>
 				</tr>
 			</c:forEach>

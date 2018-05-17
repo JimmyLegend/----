@@ -24,6 +24,9 @@ public class Test {
 	private String tianKongScores;
 	//问答分数
 	private String wenDaScores;
+	
+	//总分
+	private String totalScores;
 	public int getId() {
 		return id;
 	}
@@ -123,5 +126,11 @@ public class Test {
 	}
 	public void setWenDaQuetions(String wendaquetions) {
 		this.wendaquetions = wendaquetions;
+	}
+	public String getTotalScores() {
+		return totalScores;
+	}
+	public void setTotalScores(String totalScores) {
+		this.totalScores = totalScores;
 	}
 }

@@ -21,6 +21,9 @@ public interface ITestService {
 	public List<Map<String, Object>> findTestsByTeaId(int teaId) ;
 
 	public Map<String, Object> findTestsById(int id, int teaId);
+	
+	public Map<String, Object> findTestByTestId(int testId);
+	
 	public Map<String, Object> findStudentTestsById(int studentid,int testid) ;
 	public List<Map<String, Object>> getTestByStudent(int id, String currData);
 	

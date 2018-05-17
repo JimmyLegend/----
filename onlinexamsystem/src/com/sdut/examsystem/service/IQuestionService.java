@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.sdut.examsystem.po.Question;
+import com.sdut.examsystem.po.QuestionPanDuan;
 
 public interface IQuestionService {
 	 
@@ -19,11 +20,27 @@ public interface IQuestionService {
 	
 	public Map<String, Object> findQuestionById(int id);
 	
+	public Map<String, Object> findQuestionPanDuanById(int panDuanId);
+	
+	public Map<String, Object> findQuestionTianKongById(int tianKongId);
+	
+	public Map<String, Object> findQuestionWenDaById(int wenDaId);
+	
 	public void updateQuestionInfo(Question q);
+	
+	public void updateQuestionPanDuanInfo(QuestionPanDuan questionPanDuan);
+	
+	public void updateQuestionTianKongInfo(Question q);
+	
+	public void updateQuestionWenDaInfo(Question q);
 	
 	public void deleteQuestion(int id);
 	
+	public void deleteQuestionPanDuan(int panDuanId);
 	
+	public void deleteQuestionTianKong(int tianKongId);
+	
+	public void deleteQuestionWenDa(int wenDaId);
 	//生成试卷，需要的信息，考试科目
 	public List<Map<String, Object>> collectQuestions(int queType,int courseId,int num);
 	
@@ -38,5 +55,7 @@ public interface IQuestionService {
 	public List<Map<String, Object>> findTianKongQuestionsByCourseId(int courseId);
 	
 	public List<Map<String, Object>> findWenDaQuestionsByCourseId(int courseId);
+	
+	public Map<String, Object> findPaperById(int paperId);
 	
 }

@@ -50,7 +50,7 @@ ToolUtil t=new ToolUtil();
 	@Override
 	public List getPaperByStudentId(int studentId) {
 		// TODO Auto-generated method stub
-		String sql="SELECT distinct p.id,c.name as courseName ,t.name as testName,p.time,p.createDate,p.totalscore from papers p,test t,student s , course c WHERE t.id=p.testId and c.id=p.courseId and p.studentId = ? ORDER BY p.createDate";
+		String sql="SELECT distinct p.id,p.testId,c.name as courseName ,t.name as testName,p.time,p.createDate,p.totalscore from papers p,test t,student s , course c WHERE t.id=p.testId and c.id=p.courseId and p.studentId = ? ORDER BY p.createDate";
 		List<Map<String, Object>> list=null;
 		try {
 			list=db.getQueryList(sql,new Object[]{studentId});
@@ -63,7 +63,7 @@ ToolUtil t=new ToolUtil();
 
 	public List getPaperCompare(int teaId) {
 		// TODO Auto-generated method stub
-		String sql="SELECT p.id, AVG(p.score) as avgScore,sc.name as className , c.name as courseName,t.name as testName, t.endDate ,sc.deptName from papers p, student as s , stuclass as sc , test t, course c where t.courseId = c.id and p.testId = t.id and s.classId = sc.id and s.id = p.studentId and p.testId in (SELECT t.id from test as t where t.teacherId = ?) GROUP BY className,testName ORDER BY testName";
+		String sql="SELECT p.id, AVG(p.score) as avgScore,sc.name as className , c.name as courseName,t.name as testName,t.id as testId,t.endDate ,sc.deptName from papers p, student as s , stuclass as sc , test t, course c where t.courseId = c.id and p.testId = t.id and s.classId = sc.id and s.id = p.studentId and p.testId in (SELECT t.id from test as t where t.teacherId = ?) GROUP BY className,testName ORDER BY testName";
 		List paperList=null;
 		try {
 			paperList=db.getQueryList(sql,new Object[]{teaId});
@@ -72,6 +72,47 @@ ToolUtil t=new ToolUtil();
 			e.printStackTrace();
 		}
 		return paperList;
+	}
+
+	@Override
+	public List<Map<String, Object>> findPapersByTeaId(int teaId,int testId) {
+		// TODO Auto-generated method stub
+		String currentTime=ToolUtil.getCurrentDate();
+		String sql="select p.id,p.testId,sc.name as className,c.name as courseName,t.name testName,t.endDate,sc.deptName,s.name as studentName,p.time as testTime,p.totalscore as totalScore from papers p,course c,test t,student as s , stuclass as sc where p.testId=? and p.testId=t.id and p.studentId=s.id and s.classId=sc.id and t.courseId=c.id and sc.id in(t.classIds)";
+		List<Map<String, Object>> list=null;
+		try {
+			list=db.getQueryList(sql,new Object[]{testId});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public Map<String, Object> findPaperByPaperId(int paperId) {
+		// TODO Auto-generated method stub
+		String sql="select * from papers where papers.id=?";
+		Map<String, Object> map=null;
+		try {
+			map=db.getObject(sql,new Object[]{paperId});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return map;
+	}
+
+	@Override
+	public void updatePaperByPaperId(int paperId,int wendascore,int totalscore) {
+		// TODO Auto-generated method stub
+		String sql = "update papers set wendascore=?,totalscore=? where id=?";
+		try {
+			db.execute(sql, new Object[]{wendascore,totalscore,paperId});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -50,10 +50,14 @@
 			&nbsp;&nbsp;
 			<a href="<%=path%>/QuestionPanDuanQueryServlet" target="mainFrame">判断题</a>
 			&nbsp;&nbsp;
+			<a href="<%=path%>/QuestionTianKongQueryServlet" target="mainFrame">填空题</a>
+			&nbsp;&nbsp;
 			<a href="<%=path%>/QuestionWenDaQueryServlet" target="mainFrame">问答题</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;<a href='<%=path%>/questionAddServlet'>增加选择题</a>
 			&nbsp;&nbsp;
 			<a href='<%=path%>/QuestionAddPanDunServlet'>增加判断题</a>
+			&nbsp;&nbsp;
+			<a href='<%=path%>/QuestionAddTianKongServlet'>增加填空题</a>
 			&nbsp;&nbsp;
 			<a href='<%=path%>/QuestionAddWenDaServlet'>增加问答题</a>
 		</h3>
@@ -78,9 +82,9 @@
 					<td width="40">${que.queTitle}</td>
 					<td width="30" align="center">${que.ans}</td>
 					<td width="30"><a
-						href='<%=path%>/questionModifyServlet?id=${que.id}'>修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+						href='<%=path%>/QuestionPanDuanModifyServlet?id=${que.id}'>修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
 						<a
-						href='<%=path%>/questionDeleteServlet?id=${que.id}'
+						href='<%=path%>/QuestionPanDuanDeleteServlet?id=${que.id}'
 						onclick="javascript: return confirm('确认删除试题吗？');">删除</a></td>
 				</tr>
 			</c:forEach>

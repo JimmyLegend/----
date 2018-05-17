@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.sdut.examsystem.dao.teacher.QuestionDao;
 import com.sdut.examsystem.po.Question;
+import com.sdut.examsystem.po.QuestionPanDuan;
 import com.sdut.examsystem.service.IQuestionService;
 
 public class QuestionService implements IQuestionService {
@@ -109,6 +110,56 @@ public class QuestionService implements IQuestionService {
 	public List<Map<String, Object>> findWenDaQuestionsByCourseId(int courseId) {
 		// TODO Auto-generated method stub
 		return qd.findQuestionsByCourseId(courseId);
+	}
+	@Override
+	public Map<String, Object> findPaperById(int paperId) {
+		// TODO Auto-generated method stub
+		return qd.findPaperById(paperId);
+	}
+	@Override
+	public Map<String, Object> findQuestionPanDuanById(int panDuanId) {
+		// TODO Auto-generated method stub
+		return qd.findQuestionPanDuanById(panDuanId);
+	}
+	@Override
+	public void updateQuestionPanDuanInfo(QuestionPanDuan questionPanDuan) {
+		// TODO Auto-generated method stub
+		qd.updateQuestionPanDuanInfo(questionPanDuan);
+	}
+	@Override
+	public void deleteQuestionPanDuan(int panDuanId) {
+		// TODO Auto-generated method stub
+		qd.deleteQuestionPanDuan(panDuanId);
+	}
+	@Override
+	public Map<String, Object> findQuestionTianKongById(int tianKongId) {
+		// TODO Auto-generated method stub
+		return qd.findQuestionTianKongById(tianKongId);
+	}
+	@Override
+	public void updateQuestionTianKongInfo(Question q) {
+		// TODO Auto-generated method stub
+		qd.updateQuestionTianKongInfo(q);
+	}
+	@Override
+	public void deleteQuestionTianKong(int tianKongId) {
+		// TODO Auto-generated method stub
+		qd.deleteQuestionTianKong(tianKongId);
+	}
+	@Override
+	public Map<String, Object> findQuestionWenDaById(int wenDaId) {
+		// TODO Auto-generated method stub
+		return qd.findQuestionWenDaById(wenDaId);
+	}
+	@Override
+	public void updateQuestionWenDaInfo(Question q) {
+		// TODO Auto-generated method stub
+		qd.updateQuestionWenDaInfo(q);
+	}
+	@Override
+	public void deleteQuestionWenDa(int wenDaId) {
+		// TODO Auto-generated method stub
+		qd.deleteQuestionWenDa(wenDaId);
 	}
 
 }

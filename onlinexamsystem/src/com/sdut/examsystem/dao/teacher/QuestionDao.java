@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.sdut.examsystem.dao.IQuestionDao;
 import com.sdut.examsystem.po.Question;
+import com.sdut.examsystem.po.QuestionPanDuan;
 import com.sdut.examsystem.util.DBUtil;
 
 public class QuestionDao implements IQuestionDao {
@@ -451,6 +452,124 @@ public class QuestionDao implements IQuestionDao {
 			}
 		}
 		return s.toString();
+	}
+	@Override
+	public Map<String, Object> findPaperById(int paperId) {
+		// TODO Auto-generated method stub
+		Map<String, Object> list=null;
+		try {
+			String sql="select * from papers where papers.id=?";
+		list=db.getObject(sql,new Object[]{paperId});
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		return list;
+	}
+	@Override
+	public Map<String, Object> findQuestionPanDuanById(int panDuanId) {
+		// TODO Auto-generated method stub
+		Map<String, Object> list=null;
+		try {
+			String sql="select * from questionpanduan where id=?";
+		list=db.getObject(sql,new Object[]{panDuanId});
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		return list;
+	}
+	@Override
+	public void updateQuestionPanDuanInfo(QuestionPanDuan q) {
+		// TODO Auto-generated method stub
+		String sql = "update questionpanduan set queType=?,queTitle=?, ans=?,courseId=?  where id=?";
+		try {
+			db.execute(sql, new Object[]{q.getQueType(),q.getQueTitle(),q.getAns(),q.getCourseId(),q.getId()});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void deleteQuestionPanDuan(int panDuanId) {
+		// TODO Auto-generated method stub
+		String sql="delete from questionpanduan where id=?";
+		try {
+			db.execute(sql, new Object[]{panDuanId});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public Map<String, Object> findQuestionTianKongById(int tianKongId) {
+		// TODO Auto-generated method stub
+		Map<String, Object> list=null;
+		try {
+			String sql="select * from questiontiankong where id=?";
+		list=db.getObject(sql,new Object[]{tianKongId});
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		return list;
+	}
+	@Override
+	public void updateQuestionTianKongInfo(Question q) {
+		// TODO Auto-generated method stub
+		String sql = "update questiontiankong set queType=?,queTitle=?, ans=?,courseId=?  where id=?";
+		try {
+			db.execute(sql, new Object[]{q.getQueType(),q.getQueTitle(),q.getAns(),q.getCourseId(),q.getId()});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void deleteQuestionTianKong(int tianKongId) {
+		// TODO Auto-generated method stub
+		String sql="delete from questiontiankong where id=?";
+		try {
+			db.execute(sql, new Object[]{tianKongId});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public Map<String, Object> findQuestionWenDaById(int wenDaId) {
+		// TODO Auto-generated method stub
+		Map<String, Object> list=null;
+		try {
+			String sql="select * from questionwenda where id=?";
+		list=db.getObject(sql,new Object[]{wenDaId});
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		return list;
+	}
+	@Override
+	public void updateQuestionWenDaInfo(Question q) {
+		// TODO Auto-generated method stub
+		String sql = "update questionwenda set queType=?,queTitle=?, ans=?,courseId=?  where id=?";
+		try {
+			db.execute(sql, new Object[]{q.getQueType(),q.getQueTitle(),q.getAns(),q.getCourseId(),q.getId()});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void deleteQuestionWenDa(int wenDaId) {
+		// TODO Auto-generated method stub
+		String sql="delete from questionwenda where id=?";
+		try {
+			db.execute(sql, new Object[]{wenDaId});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 
