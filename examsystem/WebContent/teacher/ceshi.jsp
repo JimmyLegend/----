@@ -42,10 +42,25 @@ KindEditor.ready(function(K) {
             });
             prettyPrint();
         });
+        
+//禁止右键菜单
+document.oncontextmenu = function(){ return false; };
+// 禁止文字选择
+document.onselectstart = function(){ return false; };
+// 禁止复制
+document.oncopy = function(){ return false; };
+// 禁止剪切
+document.oncut = function(){ return false; };
+// 禁止粘贴
+document.onpaste = function(){ return false; };
 
 </script>
+<style type="text/css">
+/* 最简单的实现禁止复制的方法，采用css方式禁止文字选择，当然这只兼容webkit内核浏览器 */
+* { -webkit-user-select: none; }
+</style>
 </head>
-<body>
+<body onpaste="return false" onselectstart="return false">
 
     <div class="control-group" >
     <form id="form1" name="form1" method="post"
@@ -59,6 +74,6 @@ KindEditor.ready(function(K) {
 		</label>
          </form>
     </div>
-<span class="mathquill-rendered-math" style="font-size:20px;"><span class="textarea"></span><span class="fraction non-leaf"><span class="numerator">a</span><span class="denominator">b</span><span>&nbsp;</span></span></span><span>&nbsp;</span>
+<input type="text" name="ans" value="" />
 </body>
 </html>

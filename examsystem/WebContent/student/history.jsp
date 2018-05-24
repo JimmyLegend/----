@@ -18,9 +18,9 @@
 	<h3 class="subTitle">
 		${user.name }，以往试卷成绩查询
 		<div class="search">
-			<form action="<%=path%>/" method = "post">
-				课程名称 :	<input type="text" name= "courseSearch" value=""> 
-				<input type="submit" class="btn_grey" value="搜索">
+			<form action="<%=path%>/pastTestServlet" method = "post">
+				试卷名称 :	<input type="text" name= "paperSearch" id="paperSearch" value=''/> 
+				<input type="submit" class="btn_grey" value="搜索"/>
 			</form>
 		</div>
 	</h3>

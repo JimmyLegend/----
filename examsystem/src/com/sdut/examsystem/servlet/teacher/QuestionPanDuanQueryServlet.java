@@ -23,6 +23,12 @@ public class QuestionPanDuanQueryServlet extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String selectk=request.getParameter("selectk");
+		String quesname=request.getParameter("quesname");
+		//System.out.println(selectk+quesname);
+		List<Map<String, Object>> list=qs.findAllPanDuan(selectk,quesname);
+		request.setAttribute("queList", list);
+		request.getRequestDispatcher("/teacher/questionpanduanmanage.jsp").forward(request, response);
 	}
 
 }

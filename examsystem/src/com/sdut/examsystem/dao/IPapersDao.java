@@ -13,7 +13,10 @@ public interface IPapersDao {
 	
 	public List getPaperByStudentId(int studentId,int testId);
 	
+	
 	public List getPaperByStudentId(int studentId);
+	
+	public List getPaperByKey(int studentId,String key);
 	
 	public List<Map<String, Object>> findPapersByTeaId(int teaId,int testId) ;
 	

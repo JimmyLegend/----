@@ -27,6 +27,11 @@ public class QuestionTianKongQueryServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		String selectk=request.getParameter("selectk");
+		String quesname=request.getParameter("quesname");
+		//System.out.println(selectk+quesname);
+		List<Map<String, Object>> list=qs.findAllTianKong(selectk,quesname);
+		request.setAttribute("queList", list);
+		request.getRequestDispatcher("/teacher/questiontiankongmanage.jsp").forward(request, response);
 	}
 }

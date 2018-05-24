@@ -66,7 +66,7 @@ public class QuestionDao implements IQuestionDao {
 			 * 从页面获取的key也有两种可能。但是获取的这个key就是我们
 			 * 从数据库当中查询到的字段。这两个字段一个是name,一个是queTitle
 			 */
-			sql = "SELECT que.id ,c.name, que.queTitle,que.choiceA,que.choiceB,que.choiceC,que.choiceD,que.ans from questions que, course c where que.courseId = c.id and " + key + " like '%" + value + "%'";
+			sql = "SELECT que.id ,c.name, que.queTitle,que.ans from questionwenda que, course c where que.courseId = c.id and " + key + " like '%" + value + "%' order by id";
 		List<Map<String, Object>> queList = new ArrayList<Map<String, Object>>();
 		try {
 			queList = db.getQueryList(sql);
@@ -89,7 +89,7 @@ public class QuestionDao implements IQuestionDao {
 //		return list;
 		String sql = "";
 		if (key == "" ||value == "")
-			sql = "SELECT que.id ,c.name, que.queTitle,que.ans from questionpanduan que, course c where que.courseId = c.id";
+			sql = "SELECT que.id ,c.name, que.queTitle,que.ans from questionpanduan que, course c where que.courseId = c.id order by id";
 		else 
 			/**
 			 * 页面检索得到两个信息，一个是key，一个是检索的值
@@ -97,7 +97,7 @@ public class QuestionDao implements IQuestionDao {
 			 * 从页面获取的key也有两种可能。但是获取的这个key就是我们
 			 * 从数据库当中查询到的字段。这两个字段一个是name,一个是queTitle
 			 */
-			sql = "SELECT que.id ,c.name, que.queTitle,que.choiceA,que.choiceB,que.choiceC,que.choiceD,que.ans from questions que, course c where que.courseId = c.id and " + key + " like '%" + value + "%'";
+			sql = "SELECT que.id ,c.name, que.queTitle,que.ans from questionpanduan que, course c where que.courseId = c.id and " + key + " like '%" + value + "%' order by id";
 		List<Map<String, Object>> queList = new ArrayList<Map<String, Object>>();
 		try {
 			queList = db.getQueryList(sql);
@@ -128,7 +128,7 @@ public class QuestionDao implements IQuestionDao {
 			 * 从页面获取的key也有两种可能。但是获取的这个key就是我们
 			 * 从数据库当中查询到的字段。这两个字段一个是name,一个是queTitle
 			 */
-			sql = "SELECT que.id ,c.name, que.queTitle,que.choiceA,que.choiceB,que.choiceC,que.choiceD,que.ans from questions que, course c where que.courseId = c.id and " + key + " like '%" + value + "%'";
+			sql = "SELECT que.id ,c.name, que.queTitle,que.ans from questiontiankong que, course c where que.courseId = c.id and " + key + " like '%" + value + "%' order by id ";
 		List<Map<String, Object>> queList = new ArrayList<Map<String, Object>>();
 		try {
 			queList = db.getQueryList(sql);

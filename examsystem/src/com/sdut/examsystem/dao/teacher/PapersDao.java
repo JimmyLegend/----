@@ -115,4 +115,18 @@ ToolUtil t=new ToolUtil();
 		}
 	}
 
+	@Override
+	public List getPaperByKey(int studentId,String key) {
+		// TODO Auto-generated method stub
+		String sql="SELECT distinct p.id,p.testId,c.name as courseName ,t.name as testName,p.time,p.createDate,p.totalscore from papers p,test t,student s , course c WHERE t.id=p.testId and c.id=p.courseId and p.studentId = ? and t.name like '%?%' ORDER BY p.createDate";
+		List<Map<String, Object>> list=null;
+		try {
+			list=db.getQueryList(sql,new Object[]{studentId,key});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 }

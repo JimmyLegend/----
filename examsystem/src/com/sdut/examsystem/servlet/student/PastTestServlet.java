@@ -15,11 +15,13 @@ import org.omg.CORBA.PUBLIC_MEMBER;
 import com.sdut.examsystem.po.Student;
 import com.sdut.examsystem.service.admin.StudentService;
 import com.sdut.examsystem.service.teacher.PaperService;
+import com.sdut.examsystem.service.teacher.QuestionService;
 import com.sun.swing.internal.plaf.metal.resources.metal_zh_TW;
 @WebServlet("/pastTestServlet")
 public class PastTestServlet extends HttpServlet {
 	StudentService ss=new StudentService();
 	PaperService ps=new PaperService();
+	QuestionService qs=new QuestionService();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -39,6 +41,14 @@ public class PastTestServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//super.doPost(req, resp);
+		//String selectk=req.getParameter("selectk");
+		Student student=(Student) req.getSession().getAttribute("user");
+		String paperSearch=req.getParameter("paperSearch");
+		System.out.println(paperSearch);
+		//System.out.println(selectk+quesname);
+		List<Map<String, Object>> list=ps.getPaperByKey(student.getId(), paperSearch);
+		req.setAttribute("paperList", list);
+		req.getRequestDispatcher("/student/history.jsp").forward(req, resp);
 	}
 
 }

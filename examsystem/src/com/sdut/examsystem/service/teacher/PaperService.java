@@ -51,4 +51,10 @@ PapersDao pd=new PapersDao();
 		pd.updatePaperByPaperId(paperId, wendascore, totalscore);
 	}
 
+	@Override
+	public List getPaperByKey(int studentId,String key) {
+		// TODO Auto-generated method stub
+		return pd.getPaperByKey(studentId,key);
+	}
+
 }

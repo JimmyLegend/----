@@ -21,6 +21,8 @@ public interface IPaperService {
 	 */
 	public List getPaperByStudentId(int studentId);
 	
+	public List getPaperByKey(int studentId,String key);
+	
 	public List<Map<String, Object>> findPapersByTeaId(int teaId,int testId) ;
 	
 	public Map<String, Object> findPaperByPaperId(int paperId) ;

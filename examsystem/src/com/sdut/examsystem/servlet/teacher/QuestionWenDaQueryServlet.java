@@ -23,7 +23,12 @@ public class QuestionWenDaQueryServlet extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String selectk=request.getParameter("selectk");
+		String quesname=request.getParameter("quesname");
+		//System.out.println(selectk+quesname);
+		List<Map<String, Object>> list=qs.findAllWenDa(selectk,quesname);
+		request.setAttribute("queList", list);
+		request.getRequestDispatcher("/teacher/questionwendamanage.jsp").forward(request, response);
 	}
 
 }

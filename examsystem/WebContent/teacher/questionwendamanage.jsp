@@ -34,7 +34,7 @@
 </head>
 
 <body>
-	<form id="form1" method="post" action="<%=path%>/questionQueryServlet">
+	<form id="form1" method="post" action="<%=path%>/QuestionWenDaQueryServlet">
 		<h3 class="subTitle">
 			题库管理
 			<div class="search">
