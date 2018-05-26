@@ -8,6 +8,7 @@ import java.util.Map;
 import com.sdut.examsystem.dao.IQuestionDao;
 import com.sdut.examsystem.po.Question;
 import com.sdut.examsystem.po.QuestionPanDuan;
+import com.sdut.examsystem.po.Test;
 import com.sdut.examsystem.util.DBUtil;
 
 public class QuestionDao implements IQuestionDao {
@@ -571,6 +572,5 @@ public class QuestionDao implements IQuestionDao {
 			e.printStackTrace();
 		}
 	}
-
 
 }

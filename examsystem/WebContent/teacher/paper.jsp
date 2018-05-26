@@ -41,7 +41,7 @@
 		</tr>
 		<c:forEach var="papers" items="${papersList }">
 			<tr align="center">
-			    <td width="81"><a href = '<%=path%>/PaperDetailInfoServlet?paperId=${papers.id}&testId=${papers.testId}&studentName=${papers.studentName}'>${papers.studentName }</a></td>
+			    <td width="81"><a href = '<%=path%>/PaperDetailInfoServlet?paperId=${papers.id}&testId=${papers.testId}&studentId=${papers.studentId}'>${papers.studentName }</a></td>
 				<td>${papers.courseName }</td>
 				<td>${papers.testName }</td>
 				<td>${papers.endDate }</td>

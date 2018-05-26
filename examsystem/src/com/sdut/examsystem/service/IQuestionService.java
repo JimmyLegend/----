@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.sdut.examsystem.po.Question;
 import com.sdut.examsystem.po.QuestionPanDuan;
+import com.sdut.examsystem.po.Test;
 
 public interface IQuestionService {
 	 
@@ -43,6 +44,8 @@ public interface IQuestionService {
 	public void deleteQuestionWenDa(int wenDaId);
 	//生成试卷，需要的信息，考试科目
 	public List<Map<String, Object>> collectQuestions(int queType,int courseId,int num);
+	
+	public List<Map<String, Object>> studCollectQuestions(int queType,Map<String, Object> test);
 	
 	public String testQuestionIds(List<Map<String, Object>> list);
 	

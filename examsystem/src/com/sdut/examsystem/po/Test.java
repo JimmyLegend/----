@@ -27,6 +27,12 @@ public class Test {
 	
 	//总分
 	private String totalScores;
+	
+	private int xuanzenum;
+	private int panduannum;
+	private int tiankongnum;
+	private int wendanum;
+	private int testtype;
 	public int getId() {
 		return id;
 	}
@@ -132,5 +138,35 @@ public class Test {
 	}
 	public void setTotalScores(String totalScores) {
 		this.totalScores = totalScores;
+	}
+	public int getXuanXeNum() {
+		return xuanzenum;
+	}
+	public void setXuanXeNum(int xuanzenum) {
+		this.xuanzenum = xuanzenum;
+	}
+	public int getPanDuanNum() {
+		return panduannum;
+	}
+	public void setPanDuanNum(int panduannum) {
+		this.panduannum = panduannum;
+	}
+	public int getTianKongNum() {
+		return tiankongnum;
+	}
+	public void setTianKongNum(int tiankongnum) {
+		this.tiankongnum = tiankongnum;
+	}
+	public int getWenDaNum() {
+		return wendanum;
+	}
+	public void setWenDaNum(int wendanum) {
+		this.wendanum = wendanum;
+	}
+	public int getTestType() {
+		return testtype;
+	}
+	public void setTestType(int testtype) {
+		this.testtype = testtype;
 	}
 }

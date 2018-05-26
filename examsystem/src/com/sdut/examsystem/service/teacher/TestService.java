@@ -45,4 +45,16 @@ public class TestService implements ITestService {
 		return td.findTestByTestId(testId);
 	}
 
+	@Override
+	public void studCreateTest(Map testMap) {
+		// TODO Auto-generated method stub
+		td.studCreateTest(testMap);
+	}
+
+	@Override
+	public Map<String, Object> findTestByStudTestId(int testId) {
+		// TODO Auto-generated method stub
+		return td.findTestStudByTestId(testId);
+	}
+
 }

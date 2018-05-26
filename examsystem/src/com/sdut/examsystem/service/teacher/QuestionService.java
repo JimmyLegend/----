@@ -1,11 +1,14 @@
 package com.sdut.examsystem.service.teacher;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import com.sdut.examsystem.dao.teacher.QuestionDao;
 import com.sdut.examsystem.po.Question;
 import com.sdut.examsystem.po.QuestionPanDuan;
+import com.sdut.examsystem.po.Test;
 import com.sdut.examsystem.service.IQuestionService;
 
 public class QuestionService implements IQuestionService {
@@ -160,6 +163,77 @@ public class QuestionService implements IQuestionService {
 	public void deleteQuestionWenDa(int wenDaId) {
 		// TODO Auto-generated method stub
 		qd.deleteQuestionWenDa(wenDaId);
+	}
+	@Override
+	public List<Map<String, Object>> studCollectQuestions(int queType,Map<String, Object> test) {
+		// TODO Auto-generated method stub
+		List<Map<String, Object>> list=null;
+		List newQuesList = new ArrayList();
+		if(queType==1)
+		{
+			String xuanzeid=test.get("questions").toString();
+			int num=Integer.parseInt(test.get("xuanzenum").toString());
+			list=qd.findQuestionByIds(xuanzeid);
+			if (null == list)
+				return new ArrayList<Map<String, Object>>();
+			// shuffle方法是对集合的对象打乱顺序
+			Collections.shuffle(list);
+			if (list.size() <= num)
+				return list;
+			
+			for (int i = 0; i < num; i++) {
+				newQuesList.add(list.get(i));
+			}
+		}
+		else if(queType==2)
+		{
+			String panduanid=test.get("questionspanduan").toString();
+			int num=Integer.parseInt(test.get("panduannum").toString());
+			list=qd.findPanDuanQuestionByIds(panduanid);
+			if (null == list)
+				return new ArrayList<Map<String, Object>>();
+			// shuffle方法是对集合的对象打乱顺序
+			Collections.shuffle(list);
+			if (list.size() <= num)
+				return list;
+			
+			for (int i = 0; i < num; i++) {
+				newQuesList.add(list.get(i));
+			}
+		}
+		else if(queType==3)
+		{
+			String tiankongid=test.get("questionstiankong").toString();
+			int num=Integer.parseInt(test.get("tiankongnum").toString());
+			list=qd.findTianKongQuestionByIds(tiankongid);
+			if (null == list)
+				return new ArrayList<Map<String, Object>>();
+			// shuffle方法是对集合的对象打乱顺序
+			Collections.shuffle(list);
+			if (list.size() <= num)
+				return list;
+			
+			for (int i = 0; i < num; i++) {
+				newQuesList.add(list.get(i));
+			}
+		}
+		else if(queType==4)
+		{
+			String wendaid=test.get("questionswenda").toString();
+			int num=Integer.parseInt(test.get("wendanum").toString());
+			list=qd.findWenDaQuestionByIds(wendaid);
+			if (null == list)
+				return new ArrayList<Map<String, Object>>();
+			// shuffle方法是对集合的对象打乱顺序
+			Collections.shuffle(list);
+			if (list.size() <= num)
+				return list;
+			
+			for (int i = 0; i < num; i++) {
+				newQuesList.add(list.get(i));
+			}
+		}
+		return newQuesList;
 	}
 
 }

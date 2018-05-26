@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.sdut.examsystem.po.Question;
 import com.sdut.examsystem.po.QuestionPanDuan;
+import com.sdut.examsystem.po.Test;
 
 public interface IQuestionDao {
 

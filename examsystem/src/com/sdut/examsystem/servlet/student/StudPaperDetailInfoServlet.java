@@ -34,8 +34,13 @@ public class StudPaperDetailInfoServlet extends HttpServlet {
 		request.setAttribute("paperId", paperId);
 		//System.out.println(testId);
 		Map<String, Object> test=ts.findTestByTestId(Integer.parseInt(testId));
-		
-		//System.out.println(test);
+		String testType=test.get("testtype").toString();
+		if(Integer.parseInt(testType)==2)
+		{
+			
+		    test=ts.findTestByStudTestId(Integer.parseInt(testId));
+		}
+		System.out.println(test);
 		request.setAttribute("test", test);
 		request.setAttribute("courseName",test.get("courseName"));
 		request.setAttribute("classNames",test.get("classNames"));

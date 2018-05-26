@@ -78,7 +78,7 @@ ToolUtil t=new ToolUtil();
 	public List<Map<String, Object>> findPapersByTeaId(int teaId,int testId) {
 		// TODO Auto-generated method stub
 		String currentTime=ToolUtil.getCurrentDate();
-		String sql="select p.id,p.testId,sc.name as className,c.name as courseName,t.name testName,t.endDate,sc.deptName,s.name as studentName,p.time as testTime,p.totalscore as totalScore from papers p,course c,test t,student as s , stuclass as sc where p.testId=? and p.testId=t.id and p.studentId=s.id and s.classId=sc.id and t.courseId=c.id and sc.id in(t.classIds)";
+		String sql="select p.id,p.testId,p.studentId,sc.name as className,c.name as courseName,t.name testName,t.endDate,sc.deptName,s.name as studentName,p.time as testTime,p.totalscore as totalScore from papers p,course c,test t,student as s , stuclass as sc where p.testId=? and p.testId=t.id and p.studentId=s.id and s.classId=sc.id and t.courseId=c.id and sc.id in(t.classIds)";
 		List<Map<String, Object>> list=null;
 		try {
 			list=db.getQueryList(sql,new Object[]{testId});

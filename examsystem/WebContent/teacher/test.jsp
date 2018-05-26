@@ -36,7 +36,7 @@ p {
 					考试班级：${classNames}<br /> 
 					考试截止时间：${test.endDate}<br />
 					考试时长：${test.testTime}min<br />
-					考试分值：${test.scores}<br />
+					考试分值：${test.totalScores}<br />
 				</center>
 			</h3>
 			<p>

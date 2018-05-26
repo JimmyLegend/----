@@ -120,6 +120,7 @@ p {
 
 	<%
 		Map test = (Map) session.getAttribute("test");//题
+		System.out.println("1233"+test);
 		List sin_ques = (List) session.getAttribute("quesList");//单选
 		List qPanDuanList = (List) session.getAttribute("qPanDuanList");//判断
 		List qTianKongList = (List) session.getAttribute("qTianKongList");//填空

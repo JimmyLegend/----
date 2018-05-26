@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sdut.examsystem.po.Teacher;
+import com.sdut.examsystem.service.admin.StudentService;
 import com.sdut.examsystem.service.teacher.PaperService;
 import com.sdut.examsystem.service.teacher.QuestionService;
 import com.sdut.examsystem.service.teacher.TestService;
@@ -21,19 +22,25 @@ public class PaperDetailInfoServlet extends HttpServlet {
 	TestService ts=new TestService();
 	QuestionService qs=new QuestionService();
 	PaperService pService=new PaperService();
+	StudentService ss=new StudentService();
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String testId=request.getParameter("testId");
 		String paperId=request.getParameter("paperId");
-		String studentName=request.getParameter("studentName");
-		request.setAttribute("studentName", studentName);
+		String studentId=request.getParameter("studentId");
+		Map<String, Object> student=ss.findStudentById(Integer.parseInt(studentId));
+		request.setAttribute("studentName", student.get("name"));
 		request.setAttribute("testId", testId);
 		request.setAttribute("paperId", paperId);
 		//System.out.println(testId);
 		Teacher teacher=(Teacher) request.getSession().getAttribute("user");
 		Map<String, Object> test=ts.findTestsById(Integer.parseInt(testId), teacher.getId());
-		
+		String testype=test.get("testtype").toString();
+		if(Integer.parseInt(testype)==2)
+		{
+			test=ts.findTestByStudTestId(Integer.parseInt(testId));
+		}
 		//System.out.println(test);
 		request.setAttribute("test", test);
 		request.setAttribute("courseName",test.get("courseName"));

@@ -37,7 +37,8 @@ history.go(1);//屏蔽回退
     <ul>
         <li><a href = '<%=path%>/testQueryServlet' target="mainFrame">近期考试</a></li>
         <li><a href='<%=path%>/papersCompareServlet' target="mainFrame">班级评估</a></li>
-        <li><a href='<%=path%>/testAddServlet' target="mainFrame">发布试卷</a></li>
+        <li><a href='<%=path%>/testAddServlet' target="mainFrame">统一组卷</a></li>
+        <li><a href='<%=path%>/AllQuestionQueryServlet' target="mainFrame">随机组卷</a></li>
         <li><a href="<%=path%>/questionQueryServlet" target="mainFrame">题库管理</a></li>
         <li><a href="<%=path %>/loginOutServlet" target="_parent" onclick="javascript: return confirm('确认退出用户吗？');">退出用户</a></li>
     </ul>

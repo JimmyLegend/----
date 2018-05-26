@@ -29,12 +29,36 @@ public class StudentTest extends HttpServlet {
 		Student student =(Student) req.getSession().getAttribute("user");
 		//System.out.println(student.getId()+testId);
 		Map<String, Object> testMap=ts.findStudentTestsById(student.getId(), Integer.parseInt(testId));
+		System.out.println(testMap.get("testtype"));
 		//System.out.println(testMap);
-		List<Map<String, Object>> qList=qs.findQuestionByIds(1,testMap.get("questions").toString());
-		List<Map<String, Object>> qPanDuanList=qs.findQuestionByIds(2,testMap.get("questionspanduan").toString());
-		List<Map<String, Object>> qTianKongList=qs.findQuestionByIds(3,testMap.get("questionstiankong").toString());
-		List<Map<String, Object>> qWenDaList=qs.findQuestionByIds(4,testMap.get("questionswenda").toString());
-		System.out.println(testMap);
+		int testtype=Integer.parseInt(testMap.get("testtype").toString());
+		List<Map<String, Object>> qList=null;
+		List<Map<String, Object>> qPanDuanList=null;
+		List<Map<String, Object>> qTianKongList=null;
+		List<Map<String, Object>> qWenDaList=null;
+		if(testtype==1)
+		{
+			qList=qs.findQuestionByIds(1,testMap.get("questions").toString());
+			qPanDuanList=qs.findQuestionByIds(2,testMap.get("questionspanduan").toString());
+			qTianKongList=qs.findQuestionByIds(3,testMap.get("questionstiankong").toString());
+			qWenDaList=qs.findQuestionByIds(4,testMap.get("questionswenda").toString());
+		}
+		else if(testtype==2)
+		{
+			qList=qs.studCollectQuestions(1,testMap);
+			qPanDuanList=qs.studCollectQuestions(2,testMap);
+			qTianKongList=qs.studCollectQuestions(3,testMap);
+			qWenDaList=qs.studCollectQuestions(4,testMap);
+			String questions=qs.testQuestionIds(qList);
+			String panduanquetions=qs.testQuestionIds(qPanDuanList);
+			String tiankongquetions=qs.testQuestionIds(qTianKongList);
+			String wendaquetions=qs.testQuestionIds(qWenDaList);
+		
+			testMap.put("questions", questions);
+			testMap.put("questionspanduan", panduanquetions);
+			testMap.put("questionstiankong", tiankongquetions);
+			testMap.put("questionswenda", wendaquetions);
+		}
 		req.setAttribute("scoreperques", 1.0*Integer.parseInt(testMap.get("scores").toString())/qList.size());
 		req.setAttribute("panduanscores", 1.0*Integer.parseInt(testMap.get("panduanscores").toString())/qPanDuanList.size());
 		req.setAttribute("tiankongscores", 1.0*Integer.parseInt(testMap.get("tiankongscores").toString())/qTianKongList.size());
@@ -55,6 +79,7 @@ public class StudentTest extends HttpServlet {
 		String time = req.getParameter("hidden1");
 		//从session中获取试卷信息
 		Map testMap = (Map) req.getSession().getAttribute("test");
+		ts.studCreateTest(testMap);
 		
 		//选择题
 		//从session中获取试题信息
