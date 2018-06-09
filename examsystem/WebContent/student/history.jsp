@@ -12,6 +12,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>以往试卷成绩查询</title>
+<link rel="stylesheet" href="<%=basePath %>/common/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="<%=basePath %>/common/kindeditor/plugins/code/prettify.css" />
 <link href="<%=path%>/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>

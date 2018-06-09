@@ -30,7 +30,7 @@ public class TestAddServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//super.doGet(req, resp);
-		Teacher teacher=(Teacher) req.getSession().getAttribute("user");
+		Teacher teacher=(Teacher) req.getSession().getAttribute("teacher");
 		List<Course> clist=cs.findAllCoursesByTeacherId(teacher.getId());
 		//System.out.println(teacher.getId());
 		req.setAttribute("courseList", clist);
@@ -43,7 +43,7 @@ public class TestAddServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//super.doPost(req, resp);
-		Teacher loginTeacher=(Teacher) req.getSession().getAttribute("user");
+		Teacher loginTeacher=(Teacher) req.getSession().getAttribute("teacher");
 		String testtime=req.getParameter("testtime");
 		String[] classCheck=req.getParameterValues("classCheck");
 		String enddate=req.getParameter("enddate");

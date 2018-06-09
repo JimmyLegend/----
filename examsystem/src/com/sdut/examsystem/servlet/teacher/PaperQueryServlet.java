@@ -18,7 +18,7 @@ public class PaperQueryServlet extends HttpServlet {
 	PaperService pService=new PaperService();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Teacher teacher=(Teacher) request.getSession().getAttribute("user");
+		Teacher teacher=(Teacher) request.getSession().getAttribute("teacher");
 		int testId=Integer.parseInt(request.getParameter("id"));
 		List<Map<String, Object>> paper=pService.findPapersByTeaId(teacher.getId(),testId);
 		//System.out.println(teacher.getId());

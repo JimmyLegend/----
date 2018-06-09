@@ -34,7 +34,7 @@ public class PaperDetailInfoServlet extends HttpServlet {
 		request.setAttribute("testId", testId);
 		request.setAttribute("paperId", paperId);
 		//System.out.println(testId);
-		Teacher teacher=(Teacher) request.getSession().getAttribute("user");
+		Teacher teacher=(Teacher) request.getSession().getAttribute("teacher");
 		Map<String, Object> test=ts.findTestsById(Integer.parseInt(testId), teacher.getId());
 		String testype=test.get("testtype").toString();
 		if(Integer.parseInt(testype)==2)
@@ -98,7 +98,7 @@ public class PaperDetailInfoServlet extends HttpServlet {
 		String tiankongwrongans=null;
 		tiankongwrongans=paper.get("wrongtiankongans").toString();
 		Map<Integer,String> tiankongMap=new HashMap<Integer, String>();;
-		if(!panduanwrongid.equals(""))
+		if(!tiankongwrongid.equals(""))
 		{
 			String[] strsid=tiankongwrongid.split(",");
 			String[] strsans=tiankongwrongans.split(",");
@@ -141,7 +141,7 @@ public class PaperDetailInfoServlet extends HttpServlet {
 			pService.updatePaperByPaperId(Integer.parseInt(paperId), wendascore, totalscore);
 			//System.out.println(paperId);
 		}
-		Teacher teacher=(Teacher) request.getSession().getAttribute("user");
+		Teacher teacher=(Teacher) request.getSession().getAttribute("teacher");
 		int testId=Integer.parseInt(request.getParameter("id"));
 		List<Map<String, Object>> papers=pService.findPapersByTeaId(teacher.getId(),testId);
 		//System.out.println(teacher.getId());

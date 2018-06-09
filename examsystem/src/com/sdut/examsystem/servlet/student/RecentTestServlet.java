@@ -22,7 +22,7 @@ public class RecentTestServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//super.doGet(req, resp);
-		Student student=(Student) req.getSession().getAttribute("user");
+		Student student=(Student) req.getSession().getAttribute("student");
 		String currData=tool.getCurrentTime();
      	List<Map<String, Object>> testList=ts.getTestByStudent(student.getId(), currData);
      	req.setAttribute("testList", testList);

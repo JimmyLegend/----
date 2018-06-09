@@ -25,7 +25,7 @@ public class StudPaperDetailInfoServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Student student=(Student) request.getSession().getAttribute("user");
+		Student student=(Student) request.getSession().getAttribute("student");
 		String studName=student.getName();
 		request.setAttribute("studName", studName);
 		String paperId=request.getParameter("paperId");
@@ -71,6 +71,7 @@ public class StudPaperDetailInfoServlet extends HttpServlet {
 			}
 		}
 		request.setAttribute("xuanzeMap", xuanzeMap);
+		System.out.println(xuanzeMap);
 		
 		//判断
 		String panduanwrongid=null;
@@ -96,8 +97,9 @@ public class StudPaperDetailInfoServlet extends HttpServlet {
 		tiankongwrongid=paper.get("wrongtiankongqueid").toString();
 		String tiankongwrongans=null;
 		tiankongwrongans=paper.get("wrongtiankongans").toString();
-		Map<Integer,String> tiankongMap=new HashMap<Integer, String>();;
-		if(!panduanwrongid.equals(""))
+		Map<Integer,String> tiankongMap=new HashMap<Integer, String>();
+		System.out.println("panduanwrongid:"+tiankongwrongid);
+		if(!tiankongwrongid.equals(""))
 		{
 			String[] strsid=tiankongwrongid.split(",");
 			String[] strsans=tiankongwrongans.split(",");

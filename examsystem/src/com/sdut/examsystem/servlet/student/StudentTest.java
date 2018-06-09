@@ -26,7 +26,7 @@ public class StudentTest extends HttpServlet {
 		// TODO Auto-generated method stub
 		//super.doGet(req, resp);
 		String testId=req.getParameter("testId");
-		Student student =(Student) req.getSession().getAttribute("user");
+		Student student =(Student) req.getSession().getAttribute("student");
 		//System.out.println(student.getId()+testId);
 		Map<String, Object> testMap=ts.findStudentTestsById(student.getId(), Integer.parseInt(testId));
 		System.out.println(testMap.get("testtype"));
@@ -59,10 +59,38 @@ public class StudentTest extends HttpServlet {
 			testMap.put("questionstiankong", tiankongquetions);
 			testMap.put("questionswenda", wendaquetions);
 		}
-		req.setAttribute("scoreperques", 1.0*Integer.parseInt(testMap.get("scores").toString())/qList.size());
-		req.setAttribute("panduanscores", 1.0*Integer.parseInt(testMap.get("panduanscores").toString())/qPanDuanList.size());
-		req.setAttribute("tiankongscores", 1.0*Integer.parseInt(testMap.get("tiankongscores").toString())/qTianKongList.size());
-		req.setAttribute("wendascores", 1.0*Integer.parseInt(testMap.get("wendascores").toString())/qWenDaList.size());
+		if(qList.size()!=0)
+		{
+			req.setAttribute("scoreperques", 1.0*Integer.parseInt(testMap.get("scores").toString())/qList.size());
+		}
+		else
+		{
+			req.setAttribute("scoreperques", 0);
+		}
+		if(qPanDuanList.size()!=0)
+		{
+			req.setAttribute("panduanscores", 1.0*Integer.parseInt(testMap.get("panduanscores").toString())/qPanDuanList.size());
+		}
+		else
+		{
+			req.setAttribute("panduanscores", 0);
+		}
+		if(qTianKongList.size()!=0)
+		{
+			req.setAttribute("tiankongscores", 1.0*Integer.parseInt(testMap.get("tiankongscores").toString())/qTianKongList.size());
+		}
+		else
+		{
+			req.setAttribute("tiankongscores",0);
+		}
+		if(qWenDaList.size()!=0)
+		{
+			req.setAttribute("wendascores", 1.0*Integer.parseInt(testMap.get("wendascores").toString())/qWenDaList.size());
+		}
+		else
+		{
+			req.setAttribute("wendascores",0);
+		}
 		
 		req.getSession().setAttribute("test", testMap);
 		req.getSession().setAttribute("quesList", qList);
@@ -79,6 +107,8 @@ public class StudentTest extends HttpServlet {
 		String time = req.getParameter("hidden1");
 		//从session中获取试卷信息
 		Map testMap = (Map) req.getSession().getAttribute("test");
+		String testtype=testMap.get("testtype").toString();
+		if(Integer.parseInt(testtype)==2)
 		ts.studCreateTest(testMap);
 		
 		//选择题
@@ -107,9 +137,6 @@ public class StudentTest extends HttpServlet {
 		 * 分值的计算方式为：试卷总分/试题数量*正确的题目数量
 		 * 把以上信息封装成paper对象，持久化到数据库
 		 */
-		//选择
-		if (null == quesList || quesList.size()<1)
-			return ;
 		
 		
 		
@@ -122,7 +149,15 @@ public class StudentTest extends HttpServlet {
 			Map<String, Object> q = (Map<String, Object>)quesList.get(i);
 //			System.out.println(q.get("ans"));
 			//页面接收的答案
-			String ans = req.getParameter("quesxuanze_"+q.get("id").toString()).toUpperCase();
+			String ans = req.getParameter("quesxuanze_"+q.get("id").toString());
+			if(ans==null)
+			{
+				ans="empty";
+			}
+			else
+			{
+				ans=ans.toUpperCase();
+			}
 //			System.out.println(ans);
 //			//如果和标准答案不匹配，则记录错误的题号和错误答案
 			if (!q.get("ans").toString().toUpperCase().equals(ans)){
@@ -143,7 +178,15 @@ public class StudentTest extends HttpServlet {
 			Map<String, Object> q = (Map<String, Object>)qPanDuanList.get(i);
 //			System.out.println(q.get("ans"));
 			//页面接收的答案
-			String ans = req.getParameter("quespanduan_"+q.get("id").toString()).toUpperCase();
+			String ans = req.getParameter("quespanduan_"+q.get("id").toString());
+			if(ans==null)
+			{
+				ans="empty";
+			}
+			else
+			{
+				ans=ans.toUpperCase();
+			}
 //			System.out.println(ans);
 //			//如果和标准答案不匹配，则记录错误的题号和错误答案
 			if (!q.get("ans").toString().toUpperCase().equals(ans)){
@@ -164,6 +207,11 @@ public class StudentTest extends HttpServlet {
 //			System.out.println(q.get("ans"));
 			//页面接收的答案
 			String ans = req.getParameter("tiankongans"+q.get("id"));
+			System.out.println("tiankong:"+ans);
+			if(ans.equals(""))
+			{
+				ans="empty";
+			}
 //			System.out.println(ans);
 //			//如果和标准答案不匹配，则记录错误的题号和错误答案
 			if (!q.get("ans").toString().equals(ans)){
@@ -175,7 +223,12 @@ public class StudentTest extends HttpServlet {
 		
 		//问答
 		String wendaans=req.getParameter("paperTitle");
-		System.out.println(wendaans);
+		System.out.println("wenda:"+wendaans);
+		if(wendaans.equals(""))
+		{
+			wendaans="empty";
+		}
+		
 		
 		
 //		System.out.println(wrongQueId.toString());
@@ -265,7 +318,7 @@ public class StudentTest extends HttpServlet {
 		//问答
 		p.setWenDaAns(wendaans);
 		//System.out.println(req.getSession().getAttribute("user"));
-		Student s = (Student) req.getSession().getAttribute("user");
+		Student s = (Student) req.getSession().getAttribute("student");
 		p.setStudentId(s.getId());
 		ps.save(p);
 		resp.sendRedirect(req.getContextPath()+"/student/index.jsp");

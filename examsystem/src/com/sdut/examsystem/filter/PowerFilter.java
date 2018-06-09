@@ -31,7 +31,15 @@ public class PowerFilter implements Filter {
 		// place your code here
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpServletResponse resp = (HttpServletResponse)response;
-		Object o = req.getSession().getAttribute("user");
+		Object o = req.getSession().getAttribute("admin");
+		if(o==null)
+		{
+			o = req.getSession().getAttribute("teacher");
+		}
+		if(o==null)
+		{
+			o = req.getSession().getAttribute("student");
+		}
 		String currentURL = req.getRequestURI(); // 取得根目录所对应的绝对路径:  
 		String targetURL = currentURL.substring(currentURL.indexOf("/", 1),  
 					currentURL.length()); // 截取到当前文件名用于比较 

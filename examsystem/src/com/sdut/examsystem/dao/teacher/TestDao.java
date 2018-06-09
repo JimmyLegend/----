@@ -162,7 +162,7 @@ public class TestDao implements ITestDao {
 		List<Map<String, Object>> list2=null;
 		if(list1.size()!=0)
 		    {
-			sql2="SELECT DISTINCT t.id,c.name as courseName ,t.name as testName,t.endDate ,t.questions from test t,student s , course c , papers p WHERE t.courseId = c.id and FIND_IN_SET(s.classId,t.classIds) and s.id = ? and t.endDate >? and t.id not in(SELECT papers.testId from papers where s.id = ?) ORDER BY s.id";
+			sql2="SELECT DISTINCT t.id,c.name as courseName ,t.name as testName,t.endDate ,t.questions from test t,student s , course c , papers p WHERE t.courseId = c.id and FIND_IN_SET(s.classId,t.classIds) and s.id = ? and t.endDate >? and t.id not in(SELECT papers.testId from papers where papers.studentId= ?) ORDER BY s.id";
 			try {
 				list2=db.getQueryList(sql2,new Object[]{id,currData,id});
 			} catch (Exception e) {

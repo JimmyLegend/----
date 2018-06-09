@@ -11,6 +11,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
+<link rel="stylesheet" href="<%=basePath %>/common/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="<%=basePath %>/common/kindeditor/plugins/code/prettify.css" />
 <link href="<%=path%>/css/style.css" rel="stylesheet" type="text/css" />
 <style>
 p {

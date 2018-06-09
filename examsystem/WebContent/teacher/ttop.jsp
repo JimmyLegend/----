@@ -45,7 +45,7 @@ else if (hour < 19){document.write("傍晚好！");}
 else if (hour < 22){document.write("晚上好！");}
 else {document.write("夜里好！");}
 // --></script>
-   欢迎您，<s:property value="#session.teacher.tea_name" />${user.name }老师！&nbsp;&nbsp;    
+   欢迎您，<s:property value="#session.teacher.tea_name" />${teacher.name }老师！&nbsp;&nbsp;    
           今天是 
             <script language="JavaScript"><!--
 	var dayNames = new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六");

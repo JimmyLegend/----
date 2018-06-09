@@ -19,7 +19,7 @@ public class PapersCompareServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//super.doGet(req, resp);
-		Teacher teacher=(Teacher) req.getSession().getAttribute("user");
+		Teacher teacher=(Teacher) req.getSession().getAttribute("teacher");
 		List list=ps.getPaperCompare(teacher.getId());
 		req.setAttribute("paperList", list);
 		req.getRequestDispatcher("/teacher/classpapers.jsp").forward(req, resp);

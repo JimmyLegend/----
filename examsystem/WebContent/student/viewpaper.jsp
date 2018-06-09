@@ -12,6 +12,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
+<link rel="stylesheet" href="<%=basePath %>/common/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="<%=basePath %>/common/kindeditor/plugins/code/prettify.css" />
 <link href="<%=path%>/css/style.css" rel="stylesheet" type="text/css" />
 <style>
 p {
@@ -52,7 +54,6 @@ p {
 				<p>B.${que.choiceB }</p>
 				<p>C.${que.choiceC }</p>
 				<p>D.${que.choiceD }</p>
-				<p>D.${que.id }</p>
 				<p>
 					<font color="blue"> 正确答案：${que.ans }</font>
 				</p>
@@ -65,7 +66,7 @@ p {
                 <c:set var="ans" scope="session" value="${que.ans}"/>
 				<c:if test='${xuanzeMap[que.id]==null}'>
                      <p>
-                                                   答案: <font color="blue"><c:out value="${ans}"/></font>
+                                                         答案: <font color="blue"><c:out value="${ans}"/></font>
                      <p>
                 </c:if>
 			</c:forEach>

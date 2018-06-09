@@ -12,12 +12,43 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
+<link rel="stylesheet" href="<%=basePath %>/common/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="<%=basePath %>/common/kindeditor/plugins/code/prettify.css" />
 <link href="<%=path%>/css/style.css" rel="stylesheet" type="text/css" />
 <style>
 p {
 	text-indent: 2em;
 }
 </style>
+<script type="text/javascript">
+function startPrint(obj) 
+{ 
+    var oWin=window.open("","_blank"); 
+    var strPrint="<h4 style='font-size:18px; text-align:center;'>打印预览区</h4>\n"; 
+     
+    strPrint=strPrint + "<script type=\"text/javascript\">\n"; 
+    strPrint=strPrint + "function printWin()\n"; 
+    strPrint=strPrint + "{"; 
+    strPrint=strPrint +    "var oWin=window.open(\"\",\"_blank\");\n"; 
+    strPrint=strPrint + "oWin.document.write(document.getElementById(\"content\").innerHTML);\n"; 
+    strPrint=strPrint + "oWin.focus();\n"; 
+    strPrint=strPrint + "oWin.document.close();\n"; 
+    strPrint=strPrint + "oWin.print()\n"; 
+    strPrint=strPrint + "oWin.close()\n"; 
+    strPrint=strPrint + "}\n"; 
+    strPrint=strPrint + "<\/script>\n"; 
+     
+    strPrint=strPrint + "<hr size='1' />\n"; 
+    strPrint=strPrint + "<div id=\"content\">\n"; 
+    strPrint=strPrint + obj.innerHTML + "\n"; 
+    strPrint=strPrint + "</div>\n"; 
+    strPrint=strPrint + "<hr size='1' />\n"; 
+    strPrint=strPrint + "<div style='text-align:center'><button onclick='printWin()' style='padding-left:4px;padding-right:4px;'>打 印</button><button onclick='window.opener=null;window.close();' style='padding-left:4px;padding-right:4px;'>关 闭</button></div>\n"; 
+    oWin.document.write(strPrint); 
+    oWin.focus(); 
+    oWin.document.close(); 
+} 
+</script> 
 </head>
 
 <body>
@@ -105,5 +136,6 @@ p {
 			</label>
 		</form>
 	</div>
+	<button id="btnPrint" onclick="startPrint(document.getElementById('main_content'))">打印内容</button>
 </body>
 </html>

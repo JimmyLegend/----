@@ -23,7 +23,7 @@ public class TestDetailInfoServlet extends HttpServlet {
 		//super.doGet(req, resp);
 		String testId=req.getParameter("id");
 		//System.out.println(testId);
-		Teacher teacher=(Teacher) req.getSession().getAttribute("user");
+		Teacher teacher=(Teacher) req.getSession().getAttribute("teacher");
 		Map<String, Object> test=ts.findTestsById(Integer.parseInt(testId), teacher.getId());
 		//System.out.println(test);
 		req.setAttribute("test", test);

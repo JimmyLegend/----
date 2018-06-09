@@ -31,7 +31,7 @@ public class PastTestServlet extends HttpServlet {
 //		Student student=(Student) req.getSession().getAttribute("user");
 //		Map<String, Object> stud=ss.findStudentById(student.getId());
 //		req.setAttribute("user", stud);
-		Student student=(Student) req.getSession().getAttribute("user");
+		Student student=(Student) req.getSession().getAttribute("student");
 		List list=ps.getPaperByStudentId(student.getId());
 		req.setAttribute("paperList", list);
 		req.getRequestDispatcher("/student/history.jsp").forward(req,resp);
@@ -42,7 +42,7 @@ public class PastTestServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//super.doPost(req, resp);
 		//String selectk=req.getParameter("selectk");
-		Student student=(Student) req.getSession().getAttribute("user");
+		Student student=(Student) req.getSession().getAttribute("student");
 		String paperSearch=req.getParameter("paperSearch");
 		System.out.println(paperSearch);
 		//System.out.println(selectk+quesname);

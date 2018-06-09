@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet{
 		if(role.equals("admin"))
 		{
 			if(adminUser.equals(name)&&adminPassword.equals(password)){
-				req.getSession().setAttribute("user", name);
+				req.getSession().setAttribute("admin", name);
 				req.getRequestDispatcher("manager/mindex.jsp").forward(req, resp);
 			}
 			else{
@@ -71,7 +71,7 @@ public class LoginServlet extends HttpServlet{
 			//teacher.setRole(Integer.parseInt(role));
 			Teacher teach=ls.canLogin(teacher);
 			if(teach!=null){
-				req.getSession().setAttribute("user", teach);
+				req.getSession().setAttribute("teacher", teach);
 //				System.out.println(teach.getId());
 //				System.out.println(teach.getName()+"123");
 				req.getRequestDispatcher("teacher/tindex.jsp").forward(req, resp);
@@ -86,7 +86,7 @@ public class LoginServlet extends HttpServlet{
 			student.setPwd(password);
 			Student stud=ls.canLogin(student);
 			if(stud!=null){
-				req.getSession().setAttribute("user", stud);
+				req.getSession().setAttribute("student", stud);
 				req.getRequestDispatcher("/student/index.jsp").forward(req, resp);
 			}else {
 				resp.sendRedirect("login.jsp");

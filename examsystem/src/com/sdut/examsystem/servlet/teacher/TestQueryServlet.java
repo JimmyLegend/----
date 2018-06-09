@@ -19,7 +19,7 @@ public class TestQueryServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//super.doGet(req, resp);
-		Teacher teacher=(Teacher) req.getSession().getAttribute("user");
+		Teacher teacher=(Teacher) req.getSession().getAttribute("teacher");
 		List<Map<String, Object>> test=ts.findTestsByTeaId(teacher.getId());
 		//System.out.println(teacher.getId());
 		req.setAttribute("testsList", test);

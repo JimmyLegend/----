@@ -16,7 +16,7 @@ history.go(1);//屏蔽回退
 		e.cancelBubble = true;
 		e.returnValue=false;
 		return true;//右键屏蔽
-	};
+	}; 
 </script>
 </head>
 
@@ -27,7 +27,7 @@ history.go(1);//屏蔽回退
     <frame src="<%=path %>/testQueryServlet" name="mainFrame" id="mainFrame" title="mainFrame" />
   </frameset>
 </frameset>
-<noframes><body>
+<noframes><body> 
 </body></noframes>
 </html>
 

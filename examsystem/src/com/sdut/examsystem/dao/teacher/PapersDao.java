@@ -63,7 +63,7 @@ ToolUtil t=new ToolUtil();
 
 	public List getPaperCompare(int teaId) {
 		// TODO Auto-generated method stub
-		String sql="SELECT p.id, AVG(p.score) as avgScore,sc.name as className , c.name as courseName,t.name as testName,t.id as testId,t.endDate ,sc.deptName from papers p, student as s , stuclass as sc , test t, course c where t.courseId = c.id and p.testId = t.id and s.classId = sc.id and s.id = p.studentId and p.testId in (SELECT t.id from test as t where t.teacherId = ?) GROUP BY className,testName ORDER BY testName";
+		String sql="SELECT p.id, AVG(p.totalscore) as avgScore,sc.name as className , c.name as courseName,t.name as testName,t.id as testId,t.endDate ,sc.deptName from papers p, student as s , stuclass as sc , test t, course c where t.courseId = c.id and p.testId = t.id and s.classId = sc.id and s.id = p.studentId and p.testId in (SELECT t.id from test as t where t.teacherId = ?) GROUP BY className,testName ORDER BY testName";
 		List paperList=null;
 		try {
 			paperList=db.getQueryList(sql,new Object[]{teaId});

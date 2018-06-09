@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		else {document.write("夜里好！");}
 	// -->
 	</script>
-   欢迎您， ${user.name }同学！&nbsp;&nbsp;    
+   欢迎您， ${student.name }同学！&nbsp;&nbsp;    
           今天是 
             <script language="JavaScript"><!--
 	var dayNames = new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六");

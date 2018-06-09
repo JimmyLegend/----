@@ -29,7 +29,7 @@ public class AllQuestionQueryServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Teacher teacher=(Teacher) request.getSession().getAttribute("user");
+		Teacher teacher=(Teacher) request.getSession().getAttribute("teacher");
 		List<Course> clist=cs.findAllCoursesByTeacherId(teacher.getId());
 		//System.out.println(teacher.getId());
 		request.setAttribute("courseList", clist);
@@ -59,7 +59,7 @@ public class AllQuestionQueryServlet extends HttpServlet {
 		{
 			System.out.println(str1[i]);
 		}*/
-		Teacher loginTeacher=(Teacher) req.getSession().getAttribute("user");
+		Teacher loginTeacher=(Teacher) req.getSession().getAttribute("teacher");
 		String testtime=req.getParameter("testtime");
 		String[] classCheck=req.getParameterValues("classCheck");
 		String enddate=req.getParameter("enddate");
